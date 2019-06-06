@@ -158,7 +158,7 @@ def prediction_evaluation(vect):
 
 """
 
-path = glob.glob('/home/scan-projet-7/Deskktop/test1/*.ppm')
+path = glob.glob('/home/jobee16/Deskktop/test1/*.ppm')
 for img in path:
     print(img)
     image = cv2.imread(img)
@@ -168,7 +168,7 @@ for img in path:
     i=predict_image(image)
 
 ##############################################################################################
-image= cv2.imread('/home/scan-projet-7/Desktop/for_test/test.jpg')
+image= cv2.imread('/home/jobee16/Desktop/for_test/test.jpg')
 draw = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
 img = cv2.resize(draw, (IMG_SIZE, IMG_SIZE))
 img = np.reshape(img, [1, IMG_SIZE, IMG_SIZE, 3])
@@ -193,6 +193,6 @@ plt.show()
 
 
 prediction_evaluation(prediction)
-
-img0 = cv2.imread('/home/scan-projet-7/Downloads/GTSRB_Final_Test_GT/Final_Test/Images/00012.ppm')
+#test repository file test
+img0 = cv2.imread('/home/jobee16/Downloads/GTSRB_Final_Test_GT/Final_Test/Images/00012.ppm')
 predict_image(img0)
