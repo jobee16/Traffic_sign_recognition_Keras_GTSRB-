@@ -21,13 +21,13 @@ def load_test():
     X_test = []
     Y_test = []
     img_origine=[]
-    with open('/home/scan-projet-7/Downloads/GTSRB_Final_Test_GT/GT-final_test.csv', 'r') as csvfile:
+    with open('/home/jobee16/Downloads/GTSRB_Final_Test_GT/GT-final_test.csv', 'r') as csvfile:
         reader_csv = csv.reader(csvfile)
         next(reader_csv)
 
         for line in reader_csv:
             convx=line[0].split(';', -1)[0]
-            conbine_path='/home/scan-projet-7/Downloads/GTSRB_Final_Test_GT/Final_Test/Images/'+convx
+            conbine_path='/home/jobee16/Downloads/GTSRB_Final_Test_GT/Final_Test/Images/'+convx
             imag=cv2.imread(conbine_path)
             draw = cv2.cvtColor(imag, cv2.COLOR_BGR2RGB)
             image = cv2.resize(draw, (IMG_SIZE, IMG_SIZE))
@@ -55,7 +55,7 @@ def load_test():
 # load classes and indices
 def load_class():
     classes = {}
-    with open('/home/scan-projet-7/Downloads/GTSRB/classes.csv', 'r') as csvfile:
+    with open('/home/jobee16/Downloads/GTSRB/classes.csv', 'r') as csvfile:
         reader_csv = csv.reader(csvfile)
         #next(reader_csv)
 
@@ -73,13 +73,13 @@ def load_class():
 
 def load_keras_model(filename):
     # load json and create model
-    json_file = open('/home/scan-projet-7/Downloads/GTSRB/'+filename+'.json', 'r')
+    json_file = open('/home/jobee16/Downloads/GTSRB/'+filename+'.json', 'r')
     loaded_model_json = json_file.read()
     json_file.close()
     model = model_from_json(loaded_model_json)
     # load weights into new model
-    model.load_weights('/home/scan-projet-7/PycharmProjects/untitled/model_weights'+".h5")
-    #model.load_weights('/home/scan-projet-7/Downloads/GTSRB/model-keras_weights'+".h5")
+    model.load_weights('/home/jobee16/PycharmProjects/untitled/model_weights'+".h5")
+    #model.load_weights('/home/jobee16/Downloads/GTSRB/model-keras_weights'+".h5")
 
     return model
 
@@ -109,7 +109,7 @@ print("Model error rate : %.2f%%" % (100-scores[1]*100))
 ##################################################################################################################
 
 # Prediction
-#img0 = cv2.imread('/home/scan-projet-7/Desktop/for_test/t.jpg')
+#img0 = cv2.imread('/home/jobee16/Desktop/for_test/t.jpg')
 
 
 def predict_image(image):
@@ -156,54 +156,7 @@ def prediction_evaluation(vect):
     return evaluation
 
 
-##################################################################################################################
-# Function to predict
-##################################################################################################################
 """
-import datetime
-cap = cv2.VideoCapture('/home/scan-projet-7/Downloads/video.mp4')
-
-counter = 0
-sum_time = 0
-while (True):
-    ret, draw = cap.read()
-    if not ret:
-        break
-    bgr = cv2.cvtColor(draw, cv2.COLOR_RGB2BGR)
-    # preprocess image for network
-    #image = preprocess_image(bgr)
-    image, = cv2.resize(bgr, (IMG_SIZE, IMG_SIZE))
-    scale= cv2.resize(image, (IMG_SIZE, IMG_SIZE))
-    #img = np.reshape(image, [1, IMG_SIZE, IMG_SIZE, 3])
-
-    # process image
-    start = datetime.time.time()
-    _, _, detections = model.predict_on_batch(np.expand_dims(image, axis=0))
-    t = datetime.time.time() - start
-
-
-    predicted_labels = np.argmax(detections[0, :, 4:], axis=1)
-    scores = detections[0, np.arange(detections.shape[1]), 4 + predicted_labels]
-
-    # correct for image scale
-    detections[0, :, :4] /= scale
-
-    # visualize detections
-    for idx, (label, score) in enumerate(zip(predicted_labels, scores)):
-        b = detections[0, idx, :4].astype(int)
-        cv2.rectangle(draw, (b[0], b[1]), (b[2], b[3]), 245, 6)
-        caption = "%s: %.1f%%" % ('label', score * 100)
-        cv2.putText(draw, caption, (b[0], b[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 0), 5)
-        cv2.putText(draw, caption, (b[0], b[1] - 10), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-
-
-    cv2.imwrite('/tmp/img%08d.jpg' % counter, draw)
-    counter = counter + 1
-    sum_time += t
-
-cap.release()
-cv2.destroyAllWindows()
-
 
 path = glob.glob('/home/scan-projet-7/Deskktop/test1/*.ppm')
 for img in path:
