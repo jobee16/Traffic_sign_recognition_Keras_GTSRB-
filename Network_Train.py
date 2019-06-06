@@ -21,7 +21,7 @@ def loaddata():
     X = []
     Y = []
 
-    path = glob.glob('/home/scan-projet-7/Downloads/GTSRB/*/*.ppm')
+    path = glob.glob('/home/jobee16/Downloads/GTSRB/*/*.ppm')
     for img in path:
         #print(img)
         image = cv2.imread(img)
@@ -43,7 +43,7 @@ def load_test():
     X_test = []
     Y_test = []
     img_origine=[]
-    with open('/home/scan-projet-7/Downloads/GTSRB_Final_Test_GT/GT-final_test.csv', 'r') as csvfile:
+    with open('/home/jobee16/Downloads/GTSRB_Final_Test_GT/GT-final_test.csv', 'r') as csvfile:
         reader_csv = csv.reader(csvfile)
         next(reader_csv)
 
@@ -122,9 +122,9 @@ def model():
 
 
 def save_keras_model(model, filename):
-    save_weights_path='/home/scan-projet-7/Downloads/GTSRB/'+ filename +"_weights.h5"
-    save_keras_modelh5_path='/home/scan-projet-7/Downloads/GTSRB/'+ filename+'_h5' +".h5"
-    save_model_jason_path='/home/scan-projet-7/Downloads/GTSRB/'+filename+".json"
+    save_weights_path='/home/jobee16/Downloads/GTSRB/'+ filename +"_weights.h5"
+    save_keras_modelh5_path='/home/jobee16/Downloads/GTSRB/'+ filename+'_h5' +".h5"
+    save_model_jason_path='/home/jobee16/Downloads/GTSRB/'+filename+".json"
 
     # serialize model to JSON
     model_json = model.to_json()
